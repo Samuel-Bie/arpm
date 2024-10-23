@@ -104,16 +104,30 @@ The result of Task 3 is in the file ```SpreadsheetServiceTest.php```
 The result of Task 4 is in the file ```Collection.php```
 
 # Task 5
-a) The code shown on the image does:
-        1. It schedules a command ```php artisan app:example-command``` to run every hour.
+a) As the code:
+```php
+Schedule::command('app:example-command') // Command Schedyked
+    ->everyHour() // For every hour
+    ->withoutOverlapping() // Avoids the command to run if the previous instance of the command is still running
+    ->onOneServer() // To prevent multiple servers running the same command
+    ->runInBackground() // To avoid waiting for other tasks to finish the command
+    ;
+```
 
-        2. WithOutOverlapping avoids the command to run if the previous instance of the command is still running.
+Answer: The code shown on the image does:
+1. It schedules a command ```php artisan app:example-command``` to run every hour.
 
-        3. To prevent multiple servers running the same command it usee ```->onOneServer()```
+2. WithOutOverlapping avoids the command to run if the previous instance of the command is still running.
 
-        4. To avoid waiting for other tasks to finish the command it uses ```->runInBackground()```
+3. To prevent multiple servers running the same command it usee ```->onOneServer()```
 
-b) I think that *Context* gives the access for the current given process (request) in memory and *Cache* gives access to a certain data stored in the cache system.
+4. To avoid waiting for other tasks to finish the command it uses ```->runInBackground()```
+
+
+
+b) What is the difference between the Context and Cache Facades? Provide examples to illustrate your explanation.
+
+Answer: I think that *Context* gives the access for the current given process (request) in memory and *Cache* gives access to a certain data stored in the cache system.
 1. Examples *Context*
 
     ```php
