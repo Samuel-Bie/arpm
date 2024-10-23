@@ -113,5 +113,34 @@ The result of Task 4 is in the file ```Collection.php```
 
         4. To avoid waiting for other tasks to finish the command it uses ```->runInBackground()```
 
-    b)
-    c)
+    b) I think that *Context* gives the access for the current given process (request) in memory and *Cache* gives access to a certain data stored in the cache system.
+        Examples
+        *Context*
+
+        ```php
+            // Get the currently authenticated user
+            $user = Auth::user();
+
+            // Get the request method
+            $method = request()->method();
+
+            // Get the session data
+            $sessionData = session('key');
+        ```
+
+        *Cache*
+        ```php
+            // Store a value in the cache for 60 minutes
+            Cache::put('key', 'value', 60);
+
+            // Retrieve a value from the cache
+            $value = Cache::get('key');
+
+        ```
+
+
+    c) *$query->update()*: Runs over a query builder instance and updates the records that match the query.
+
+    *$model->update()*: Updates a single model instance and saves it to the database.
+
+    *$model->updateQuietly()*: Updates a single model instance and saves it to the database without firing any events.
