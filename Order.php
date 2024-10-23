@@ -33,7 +33,6 @@ class OrderController extends Controller
                     ->first()
                     ->created_at ?? null;
 
-                $completedOrder = ($order->status == 'completed' ? true : false);
 
 
                 return [
@@ -42,7 +41,7 @@ class OrderController extends Controller
                     'total_amount' => $totalAmount,
                     'items_count' => $order->items_count,
                     'last_added_to_cart' => $lastAddedToCart,
-                    'completed_order_exists' => $completedOrder,
+                    'completed_order_exists' => $order->status == 'completed' ? true : false,
                     'completed_at' => $order->completed_at ?? null,
                     'created_at' => $order->created_at,
                 ];
