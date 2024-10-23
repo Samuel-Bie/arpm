@@ -104,7 +104,7 @@ The result of Task 3 is in the file ```SpreadsheetServiceTest.php```
 The result of Task 4 is in the file ```Collection.php```
 
 # Task 5
-    a) The code shown on the image does:
+a) The code shown on the image does:
         1. It schedules a command ```php artisan app:example-command``` to run every hour.
 
         2. WithOutOverlapping avoids the command to run if the previous instance of the command is still running.
@@ -113,34 +113,42 @@ The result of Task 4 is in the file ```Collection.php```
 
         4. To avoid waiting for other tasks to finish the command it uses ```->runInBackground()```
 
-    b) I think that *Context* gives the access for the current given process (request) in memory and *Cache* gives access to a certain data stored in the cache system.
-        Examples
-        *Context*
+b) I think that *Context* gives the access for the current given process (request) in memory and *Cache* gives access to a certain data stored in the cache system.
+1. Examples *Context*
 
-        ```php
-            // Get the currently authenticated user
-            $user = Auth::user();
+    ```php
+        // Get the currently authenticated user
+        $user = Auth::user();
 
-            // Get the request method
-            $method = request()->method();
+        // Get the request method
+        $method = request()->method();
 
-            // Get the session data
-            $sessionData = session('key');
-        ```
+        // Get the session data
+        $sessionData = session('key');
+    ```
+1. Examples *Cache*
 
-        *Cache*
-        ```php
-            // Store a value in the cache for 60 minutes
-            Cache::put('key', 'value', 60);
+    ```php
+        // Store a value in the cache for 60 minutes
+        Cache::put('key', 'value', 60);
 
-            // Retrieve a value from the cache
-            $value = Cache::get('key');
+        // Retrieve a value from the cache
+        $value = Cache::get('key');
 
-        ```
+    ```
 
 
-    c) *$query->update()*: Runs over a query builder instance and updates the records that match the query.
+c) What's the difference between $query->update(), $model->update(), and $model->updateQuietly() in Laravel, and when would you use each?
 
-    *$model->update()*: Updates a single model instance and saves it to the database.
+Answer:
 
-    *$model->updateQuietly()*: Updates a single model instance and saves it to the database without firing any events.
+1. *$query->update()*: Runs over a query builder instance and updates the records that match the query.
+I would use this to mass update the records that match a certain condition.
+
+
+
+2. *$model->update()*: Updates a single model instance and saves it to the database. I could use this method to update a single model instance and publishing the information to the application.
+Ex: *Marking a task as completed can fire several other actions*
+
+3. *$model->updateQuietly()*: Updates a single model instance and saves it to the database without firing any events.
+I would use this method when I don't want to fire any events when updating a model instance. EX: *Adding an alternative phone number to the user just as a contact information*
